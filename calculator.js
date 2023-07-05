@@ -1,9 +1,7 @@
 window.addEventListener('DOMContentLoaded', function () {
   const form = document.getElementById("calc-form");
-  // let calculateButton = document.getElementById('calc-submit');
   if (form) {
     setupInitialValues();
-    // calculateButton.addEventListener("submit", function (e) {
     form.addEventListener("submit", function (e) {
       e.preventDefault();
       update();
