@@ -5,5 +5,3 @@ it('should calculate the monthly rate correctly', function () {
 it("should return a result with 2 decimal places", function () {
   expect(calculateMonthlyPayment({ amount: 10000, years: 5, rate: 6 })).toEqual('5000.00');
 });
-
-/// etc
