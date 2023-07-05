@@ -25,15 +25,9 @@ function getCurrentUIValues() {
 function setupInitialValues() {
   //Average Autoloan years and interest rate from April-June,2023
   let values = { amount: 41445, years: 6, rate: 7.1 };
-  document.getElementById("loan-amount").value = 41445;
-  // let loanAmount = document.getElementById("loan-amount").value;
-  let loanAmount = values.amount;
-  // let termInYears = document.getElementById("loan-years").value;
-  document.getElementById("loan-years").value = 6;
-  let termInYears = values.years;
-  document.getElementById("loan-rate").value = 7.1;
-  // let yearlyRate = document.getElementById("loan-rate").value;
-  let yearlyRate = values.rate;
+  document.getElementById("loan-amount").value = values.amount;
+  document.getElementById("loan-years").value = values.years;
+  document.getElementById("loan-rate").value = values.rate;
   update();
 }
 
@@ -41,8 +35,8 @@ function setupInitialValues() {
 // Update the monthly payment
 function update() {
   let currValues = getCurrentUIValues();
-  calculateMonthlyPayment(currValues);
-  updateMonthly(currValues);
+  let monthly = calculateMonthlyPayment(currValues);
+  updateMonthly(monthly);
 }
 
 // Given an object of values (a value has amount, years and rate),
@@ -57,17 +51,12 @@ function calculateMonthlyPayment(values) {
   let n = values.years * 12;
 
   let monthlyPayment = ((P * i) / (1 - Math.pow((1 + i), -n))).toFixed(2);
-  return `${monthlyPayment}`;
+  return monthlyPayment;
 }
 
 // Given a string representing the monthly payment value,
 // update the UI to show the value.
 function updateMonthly(monthly) {
   let monthlyPayment = document.getElementById("monthly-payment");
-  monthlyPayment.innerText = Number.parseInt(monthly, 10);
-  // let msg = '$' + Number.parseInt(monthly, 10);
-  // let newSpan = document.createElement('span');
-  // const txtNode = document.createTextNode(msg);
-  // newSpan.appendChild(txtNode);
-  // monthlyPayment.appendChild(newSpan);
+  monthlyPayment.innerText = monthly;
 }
